@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="The search engine that knows everything about you, mostly because it drives around in cars collecting all your private data"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="https://raw.githubusercontent.com/esparev/eyefind.info/master/assets/img/eyefind-info-preview.png">
+    <meta property="og:url" content="https://esparev.github.io/eyefind.info/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Eyefind">
+    <meta property="og:description" content="The search engine that knows everything about you, mostly because it drives around in cars collecting all your private data">
+    <title>Eyefind</title>
+    <style>
+        .categories-container {
+  justify-content: center;
+}
+.categories-container--icon {
+  margin-right: 15px;
+}
+.categories-container__section {
+  max-width: 800px;
+}
+.categories-container__section p {
+  display: inline-block;
+}
+.main-container {
+  display: flex;
+}
+.news-website-container {
+  width: 60%;
+}
+.sidebar {
+  width: 35%;
+}
+.eyefind-featured {
+  width: 100%;
+  max-width: 940px;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+    </style>
+    <style>
+        .news-story__header {
+  display: flex;
+  justify-content: space-between;
+}
+.search-result {
+  padding-left: 20px;
+}
+    </style>
+    <style>
+        :root {
+  --blue-eye: #498CC3;
+  --yellow-eye: #F9BE00;
+  --white-eye: #F9F9F9;
+  --gray-eye: #F0F0F0;
+  --dark-blue: #03728E;
+  --dark-gray: #D0D0D0;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 62.5%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+a:hover {
+  cursor: url('./assets/icons/xp-middle-finger-2.cur'), pointer;
+}
+header {
+  position: relative;
+  width: 100%;
+  min-width: 300px;
+  height: auto;
+  border-bottom: 15px var(--yellow-eye) solid;
+  background-color: var(--blue-eye);
+}
+.header-content {
+  display: flex;
+  max-width: 800px;
+  height: 50%;
+  justify-content: center;
+  margin: 0 auto;
+  align-items: center;
+  line-height: 1.8rem;
+  color: var(--white-eye);
+}
+.header-content__media {
+  width: 170px;
+  height: 50%;
+  margin: 0 auto 0 0;
+  padding: 0 10px;
+}
+.header-content__media img {
+  width: 100%;
+}
+.header-content__info {
+  display: flex;
+  width: 180px;
+  height: 50%;
+  margin: 0 0 0 auto;
+  padding: 0 15px 0 0;
+  text-align: end;
+}
+.header-content__info--text {
+  flex: auto;
+  width: 70%;
+  padding-right: 6px;
+  border-right: 2px var(--white-eye) solid;
+}
+.header-content__info--text .location {
+  font-size: 1.4rem;
+  font-weight: lighter;
+}
+.header-content__info--text .day {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+.header-content__info--icon {
+  width: 30%;
+  padding-left: 5px;
+}
+.header-content__info--icon span {
+  display: inline-block;
+  width: 50px;
+  height: 30px;
+  background-image: url('./assets/icons/cloud.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.header-searchbar {
+  display: flex;
+  width: 100%;
+  min-width: 300px;
+  max-width: 800px;
+  align-items: center;
+  padding: 0 10px;
+  margin-bottom: 20px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.header-searchbar__input {
+  display: flex;
+  width: 100%;
+  height: 30px;
+  align-items: center;
+  border-radius: 5px;
+  margin-right: 10px;
+  background-color: var(--white-eye);
+}
+.header-searchbar__input input {
+  width: 90%;
+  height: 100%;
+  border: none;
+  border-radius: 5px;
+  background-color:var(--white-eye);
+}
+.header-searchbar__input input:focus {
+  outline: none;
+}
+.header-searchbar__input .magnifier {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-image: url('./assets/icons/search-magnifier.svg');
+  background-repeat: no-repeat;
+}
+.header-searchbar__button {
+  display: flex;
+  width: 120px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: var(--dark-blue);
+}
+.header-searchbar__button .random {
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--white-eye);
+}
+.main-categories-container {
+  width: 100%;
+  margin-bottom: 20px;
+  border-bottom: 2px var(--dark-gray) solid;
+  background-color: var(--gray-eye);
+}
+.categories-container {
+  display: flex;
+  width: 100%;
+  min-width: 320px;
+  max-width: 1000px;
+  height: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.categories-container--icon {
+  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.smartphone {
+  width: 25px;
+  height: 35px;
+  background-image: url('./assets/icons/smartphone.svg');
+}
+.fast-food {
+  width: 35px;
+  height: 35px;
+  background-image: url('./assets/icons/fast-food.svg');
+}
+.dollar {
+  width: 30px;
+  height: 30px;
+  background-image: url('./assets/icons/dollar.svg');
+}
+.plane {
+  width: 30px;
+  height: 30px;
+  background-image: url('./assets/icons/plane.svg');
+}
+.shopping-bag {
+  width: 30px;
+  height: 30px;
+  background-image: url('./assets/icons/shopping-bag.svg');
+}
+.categories-container__section {
+  margin: 0 auto;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.vl {
+  display: inline-block;
+  width: 2px;
+  height: 65px;
+  border-right: 2px var(--dark-gray) solid;
+}
+.categories-container__section p {
+  display: none;
+  font-size: 1.4rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+.categories--link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+}
+.main-container {
+  width: 100%;
+  min-width: 320px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  justify-content: space-evenly;
+}
+.search-result {
+  font-size: 1.6rem;
+  line-height: 1.8rem;
+  margin-right: auto;
+}
+.news-website-container {
+  width: 100%;
+}
+.news-story {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.4rem;
+  line-height: 1.8rem;
+  margin-bottom: 15px;
+  background-color: var(--gray-eye);
+}
+.news-story .read-article {
+  display: inline-block;
+  margin-top: 10px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: black;
+}
+.news-story__header {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.news-story__header--info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 15px;
+}
+.news-story__header--info h2 {
+  font-size: 1.8rem;
+  font-weight: normal;
+  line-height: 2.4rem;
+  text-transform: uppercase;
+}
+.news-story__header--img span {
+  display: inline-block;
+  width: 170px;
+  height: 78px;
+  background-image: url('./assets/img/daily-globe.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.website-minute {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: var(--gray-eye);
+}
+.website-minute h2 {
+  font-size: 1.8rem;
+  font-weight: normal;
+  line-height: 2.4rem;
+  text-transform: uppercase;
+}
+.website-minute__content--text {
+  font-size: 1.4rem;
+  font-weight: normal;
+  line-height: 1.8rem;
+}
+.website-minute__content--text a {
+  color: black;
+  text-decoration: none;
+}
+.website-minute__content--text a:hover {
+  color: var(--dark-blue);
+}
+.website-minute__content--text p:nth-last-child(1) {
+  font-size: 1.3rem;
+  color: rgb(78, 78, 78);
+} 
+.sidebar {
+  width: 100%;
+}
+.sidebar__advert {
+  width: auto;
+  height: auto;
+  padding: 5px;
+  padding-bottom: 3px;
+  margin: 5px;
+  margin-bottom: 15px;
+  background-color: var(--blue-eye);
+}
+.sidebar__advert:hover {
+  width: 100%;
+  margin: 0;
+  margin-bottom: 15px;
+}
+.sidebar__advert img {
+  margin-top: 5px;
+  width: 100%;
+}
+.sidebar__advert p {
+  font-size: 1.5rem;
+  text-align: center;
+  color: var(--white-eye);
+}
+.sidebar__advert--clickable {
+  text-decoration: none;
+}
+.sidebar__bleets {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: var(--gray-eye);
+}
+.bleets__header {
+  display: flex;
+  margin-bottom: 5px;
+}
+.bleets__header span {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+  background-image: url('./assets/icons/bleeter.png');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.bleets__header h2 {
+  font-size: 1.8rem;
+  font-weight: normal;
+  line-height: 2.4rem;
+  text-transform: uppercase;
+}
+.sidebar__bleets p, a {
+  font-size: 1.4rem;
+  font-weight: normal;
+  line-height: 1.8rem;
+}
+.sidebar__bleets a {
+  text-decoration: none;
+  color: var(--blue-eye);
+}
+.sidebar__bleets hr {
+  height: 1px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: none;
+  background-color: var(--blue-eye);
+}
+.sidebar__bleets .sidebar__bleets--clickable {
+  color: black;
+}
+.sidebar__bleets .sidebar__bleets--clickable:hover span {
+  outline: 3px var(--blue-eye) solid;
+}
+.eyefind-featured {
+  width: auto;
+  margin: 0 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 20px;
+  background-color: var(--gray-eye);
+}
+.eyefind-featured h2 {
+  font-size: 1.8rem;
+  font-weight: normal;
+  line-height: 2.4rem;
+  text-transform: uppercase;
+}
+footer {
+    background-color: #F0F0F0;
+    color: #000000;
+    text-align: center;
+    font-size: bold;
+    bottom: 0;
+    width: 100%;
+}
+    </style>
+  </head>
+  <body>
+    <header>
+      <section class="header-content">
+        <div class="header-content__media">
+          <a href="./index.html">
+            <img src="https://esparev.github.io/eyefind.info/assets/img/eyefind-info.png" alt="eyefind.info logo">
+          </a>
+        </div>
+        <div class="header-content__info">
+          <div class="header-content__info--text">
+            <p class="location">Vinewood Hills</p>
+            <p class="day">Sun</p>
+          </div>
+          <div class="header-content__info--icon">
+            <span class="weather"></span>
+          </div>
+        </div>
+      </section>
+      <section class="header-searchbar">
+        <div class="header-searchbar__input">
+          <span class="magnifier"></span>
+          <input type="text" placeholder="Search Eyefind">
+        </div>
+        <div class="header-searchbar__button">
+          <a class="random" href="">Random</a>
+        </div>
+      </section>
+    </header>
+    <main>
+      <section class="main-categories-container">
+        <div class="categories-container">
+          <div class="categories-container__section">
+            <a class="categories--link" href="./html/media-and-entertainment.html">
+              <span class="categories-container--icon smartphone"></span>
+              <p>Media and <br> Entertainment</p>
+            </a>
+          </div>
+          <span class="vl"></span>
+          <div class="categories-container__section">
+            <a class="categories--link" href="./html/food-and-drink.html">
+              <span class="categories-container--icon fast-food"></span>
+              <p>Food <br> and Drink</p>
+            </a>
+          </div>
+          <span class="vl"></span>
+          <div class="categories-container__section">
+            <a class="categories--link" href="./html/money-and-services.html">
+              <span class="categories-container--icon dollar"></span>
+              <p>Money <br> and Services</p>
+            </a>
+          </div>
+          <span class="vl"></span>
+          <div class="categories-container__section">
+            <a class="categories--link" href="./html/travel-and-transport.html">
+              <span class="categories-container--icon plane"></span>
+              <p>Travel <br> and Transport</p>
+            </a>
+          </div>
+          <span class="vl"></span>
+          <div class="categories-container__section">
+            <a class="categories--link" href="./html/fashion-and-health.html">
+              <span class="categories-container--icon shopping-bag"></span>
+              <p>Fashion <br> and Health</p>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section class="main-container">
+        <div class="news-website-container">
+          <section class="news-story">
+            <div class="news-story__header">
+              <div class="news-story__header--info">
+                <h2>News story of the day</h2>
+                <p>Cult crazy flees with cash.</p>
+              </div>
+              <div class="news-story__header--img">
+                <span></span>
+              </div>
+            </div>
+            <p>Mike Dunn - Daily Globe</p>
+            <p>It has been a bizarre few weeks for the Epsilon Program. Reports indicate Epsilon's founder and leader, Cris Formage, has absconded amid accusation of a car theft.</p>
+            <a class="read-article" href="">Read full article</a>
+          </section>
+          <section class="website-minute">
+            <h2>Website of the minute</h2>
+            <div class="website-minute__content">
+              <div class="website-minute__content--img">
+                <img src="" alt="">
+              </div>
+              <div class="website-minute__content--text">
+                <a href="">www.universaluniform.net</a>
+                <p>We are a clothing company that is uniquely American - we sexily advertise bland t-shirts by putting them on half dizzy sluts still woozy from a night of pounding.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+        <section class="sidebar">
+          <div class="sidebar__advert">
+            <a class="sidebar__advert--clickable" href="">
+              <p>Sponsored Advert</p>
+              <img src="https://esparev.github.io/eyefind.info/assets/img/dynasty8-advert.png" alt="Advert" _mstalt="77649" _msthash="20">
+            </a>
+          </div>
+          <div class="sidebar__bleets">
+            <a class="sidebar__bleets--clickable" href="">
+              <div class="bleets__header">
+                <span></span>
+                <h2>Recent Bleets</h2>
+              </div>
+              <div class="bleets__text">
+                <a href="">@sarahboptician</a>
+                <p>Could someone please give me directions to my happy place?</p>
+                <hr>
+                <a href="">@slappaball2</a>
+                <p>#Themostridiculouslylonghashtagever</p>
+              </div>
+            </a>
+          </div>
+        </section>
+      </section>
+      <section class="eyefind-featured">
+        <h2>Eyefind featured websites</h2>
+        <div class="eyefind-featured__websites">
+          <img src="" alt="">
+          <img src="" alt="">
+          <img src="" alt="">
+          <img src="" alt="">
+          <img src="" alt="">
+        </div>
+      </section>
+    </main>
+    <footer>
+FurryHub Productions Ltd. </br>The idea "Eyefind.info" comes from <a href="https://rockstargames.com">Rockstar Games</a>
+    </footer>
+  </body>
+</html>
