@@ -11,5 +11,4 @@ taskkill /f /im StudentMain.exe
 taskkill /f /im ProcHelper.exe
 taskkill /f /im *mythware*
 echo complete
-timeout /t 5 /nobreak >nul
 pause
